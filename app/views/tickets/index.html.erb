@@ -1,0 +1,52 @@
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Age</th>
+        <th>No Of Tickets Booked</th>
+        <th>User Id</th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @tickets.each do |ticket| %>
+        <% if current_user.admin? %>
+        <tr>
+          <td><%= ticket.name %></td>
+          <td><%= ticket.email %></td>
+          <td><%= ticket.phone_number %></td>
+          <td><%= ticket.age %></td>
+          <td><%= ticket.no_of_tickets %></td>
+          <td><%= ticket.user_id %></td>
+          <td><%= link_to "Show", ticket, class:"btn btn-outline-secondary" %></td>
+          <td><%= link_to 'Edit', edit_ticket_path(ticket), class: "btn btn-outline-secondary" %></td>
+          <td><%= link_to 'Delete', ticket, class: "btn btn-outline-secondary" %></td>
+        </tr>
+        <% elsif ticket.user == current_user %>
+        <tr>
+          <td><%= ticket.name %></td>
+          <td><%= ticket.email %></td>
+          <td><%= ticket.phone_number %></td>
+          <td><%= ticket.age %></td>
+          <td><%= ticket.no_of_tickets %></td>
+          <td><%= ticket.user_id %></td>
+          <td><%= link_to "Show", ticket, class:"btn btn-outline-secondary" %></td>
+          <td><%= link_to 'Edit', edit_ticket_path(ticket), class: "btn btn-outline-secondary" %></td>
+          <td><%= link_to 'Delete', ticket, class: "btn btn-outline-secondary" %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+</table>
+
+<br>
+
+<%= link_to "Book ticket", new_ticket_path, class:"btn btn-secondary" %>
+
+
